@@ -8,8 +8,8 @@ export async function createUser(userData){
     return await Users.insertMany(users);
 }
 
-export async function getUser(phonNumber){
-    return await Users.find({phonNumber:phonNumber});
+export async function getAllUsers(){
+    return await Users.find({})
 }
 
 export async function getUserByUserId(userId){

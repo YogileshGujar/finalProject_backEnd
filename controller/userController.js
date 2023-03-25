@@ -1,6 +1,17 @@
 import mongoose from "mongoose";
-import { createUser} from "../services/userService.js";
-import { Users } from "../models/User.js";
+import { createUser, getAllUsers} from "../services/userService.js";
+import { Users, } from "../models/User.js";
+
+
+export async function getAllUserController(req,res){
+    try{
+        let Users= await getAllUsers();
+        return res.status(200).json(Users);
+
+    }catch(e){
+         return res(500).json({error:"Error from controller catch"});
+    }
+}
 
 export async function createUserController(req,res){
     let {fname,phonNumber}=req.body;

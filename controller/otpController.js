@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 import { Users } from "../models/User.js";
 import { otpgenerator, otpverification } from "../services/otpService.js";
-import { getUser,getUserByUserId } from "../services/userService.js";
+
 import dotenv from "dotenv";
 import twilio from "twilio";
 

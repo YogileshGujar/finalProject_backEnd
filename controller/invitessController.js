@@ -1,3 +1,21 @@
+import { allinvites } from "../services/invitessService.js";
+
+export async function getAllinvitessController(req,res){
+    try{
+        let allinvitess=await allinvites();
+        if(!allinvitess){
+            res.status(400).json({error:"invites data notfound"})
+        }
+        return res.status(200).json({data:allinvitess})
+
+    }catch(e){
+        return res.status(400).json({error:"invite failed from controller catch"})
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // import { postInvite } from "../services/invitessService.js";
 
 // export async function inviteOtherController(req,res){

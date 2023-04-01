@@ -12,8 +12,8 @@ export async function getAllUsers(){
     return await Users.find({})
 }
 
-export async function getUserByUserId(userId){
-    return await Blogs.find({_id:userId});
+export async function getUserById(userId){
+    return await Users.find({"_id":userId});
 }
 
 export async function updateuser(id,data){

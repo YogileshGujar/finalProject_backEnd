@@ -24,10 +24,10 @@ export async function createMetting(data
                 endDateTime, 
             });
 
-            for(const receiverId of receiverIds){
+            for(const receiver of receiverIds){
                 await Invitess.create({
                     meetingId: meeting._id,
-                    receiverId,
+                    receiverId: receiver,
                     status: "pending",
                 });
             }
@@ -72,8 +72,8 @@ export async function updateMeetingStatus(meetingId, receiverId, status){
             // .populate("receiverIds");
             return meeting;
         }
-
-        return invitess.meetingId;
+         
+        return invitess.meetingId
     }catch(e){
          return{status:"error",message:"Error from service updating meeting status"}
     }

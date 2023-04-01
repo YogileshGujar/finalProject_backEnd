@@ -35,8 +35,11 @@ export async function otpverificationController(req,res){
   
   try{
        let verifyData=await otpverification(req.body);
-       return res.status(200).json({data:verifyData})
+       if(verifyData.status === "error"){
+        return res.status(401).send(verifyData.message);
+       }
+       return res.status(200).json(verifyData);
   }catch(e){
-    return res.status(400).json({error:"Otp is not verify"})
+    return res.status(400).json({error:"Otp is not verify catch"})
   }
 }

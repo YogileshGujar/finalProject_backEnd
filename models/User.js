@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         unique:true
     },
     otp:{
-        type:Number,
+        type:String,
         trim:true
     },
     Location:{

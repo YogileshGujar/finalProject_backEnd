@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { createUser, getAllUsers} from "../services/userService.js";
+import { createUser, getAllUsers, getUserById} from "../services/userService.js";
 import { Users, } from "../models/User.js";
 
 
@@ -28,12 +28,12 @@ export async function createUserController(req,res){
         return res.status(500).send("Error while Creating User ",e);
     }
 }
-// export async function getUserByIdController(req,ers){
-//     let id=req.params.id;
-//     try{
-//          let user =await getUserById(id);
-//          return res.status(200).send(user);
-//     }catch(e){
-//         return res.status(500).send("Error while geting User id of ",e)
-//     }
-// }
+export async function getUserByIdController(req,res){
+    // let id=req.body
+    try{
+         let user =await getUserById(req.body);
+         return res.status(200).send(user);
+    }catch(e){
+        return res.status(500).send("Error while geting User id of ",e)
+    }
+}

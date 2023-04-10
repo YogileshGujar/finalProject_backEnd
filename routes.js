@@ -1,6 +1,6 @@
 import  express  from "express";
 import { authenticate } from "./auth.js";
-import { createmeetingController, getAllMeetingController, updateMeetingStatusController } from "./controller/createMeetingController.js";
+import { createmeetingController, getAllMeetingController, updatemeetingController, updateMeetingStatusController } from "./controller/createMeetingController.js";
 import { getAllinvitessController } from "./controller/invitessController.js";
 
 import { findLocationController } from "./controller/locationController.js";
@@ -19,7 +19,8 @@ router.post('/api/getLocation',findLocationController)
 // router.get('/api/getAllMeetings',getAllMeetingController);
 router.get('/api/getAllMeetings',getAllMeetingController);
 router.post('/api/createMeeting',authenticate,createmeetingController);
-router.post('/api/updateMeeting',authenticate,updateMeetingStatusController);
+router.post('/api/updateStatusMeeting',authenticate,updateMeetingStatusController);//..........
+router.post('/api/UpdateMeeting',authenticate,updatemeetingController);
 
 
 //Users

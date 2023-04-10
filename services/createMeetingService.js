@@ -40,6 +40,57 @@ export async function createMetting(data
     // return await Meetings.insertMany(data);
 }
 
+export async function UpdateMeeting(data){
+    let {meetingName,description,  receiverIds, startDateTime, endDateTime,_id } = data;
+    // let {meetingName,_id} = data;
+    
+
+    try{
+        let meetingData =await Meetings.findById(_id);
+        console.log(meetingData)
+        if(!meetingData){
+            return{status:"error",message:"Meeting is not find fro update"};
+        }else{
+            console.log("leterr ",meetingData);
+      
+        
+            if(meetingName !== undefined && meetingName !== ''){
+                meetingData.meetingName = meetingName;
+                console.log("leterr from ",meetingData.meetingName);
+            }
+            if(description !== undefined && description !== ''){
+                meetingData.description = description;
+            }
+            if(startDateTime !== undefined && startDateTime !== ''){
+                meetingData.startDateTime = startDateTime;
+            }
+            if(endDateTime !== undefined && endDateTime !== ''){
+                meetingData.endDateTime = endDateTime;
+            }
+            if(receiverIds.length > 0){
+                const uniqueReceiverIds = receiverIds.filter((newReceiverId) => !meetingData.receiverIds.includes(newReceiverId));
+                meetingData.receiverIds = meetingData.receiverIds.concat(uniqueReceiverIds);
+                
+                for(const receiver of uniqueReceiverIds){
+                    await Invitess.create({
+                        meetingId: meetingData._id,
+                        receiverId: receiver,
+                        status: "pending",
+                    });
+                }
+    
+            }
+            
+            meetingData.save();
+            return{status:"success",message:"Meeting data updated",meetingData}; 
+        }
+         
+    }catch(e){
+        return{status:"error",message:"Error from update meeting data catch service"};
+    }
+     
+}
+
 export async function updateMeetingStatus(meetingId, receiverId, status){
    
     console.log("data ",meetingId, receiverId, status);

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { createMetting, getAllMeetings, updateMeetingStatus } from "../services/createMeetingService.js";
+import { createMetting, getAllMeetings, UpdateMeeting, updateMeetingStatus } from "../services/createMeetingService.js";
 
 
 export async function getAllMeetingController(req,res){
@@ -29,6 +29,18 @@ export async function createmeetingController(req,res){
 
     }catch(e){
         res.status(400).json({message:" error from Meeting Controller (catch)"},e);
+    }
+}
+
+export async function updatemeetingController(req,res){
+    try{
+          let updateMeeting=await UpdateMeeting(req.body);
+          if(updateMeeting.status === 'success'){
+            return res.status(200).json({message:updateMeeting.message,data:updateMeeting.meetingData});
+          }else
+          return res.status(500).json(updateMeeting.message);
+    }catch(e){
+        res.status(400).json({message:" meeting no updated from (catch)"},e);
     }
 }
 

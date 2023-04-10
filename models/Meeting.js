@@ -25,17 +25,23 @@ const meetingSchema = new mongoose.Schema({
         required: true,
     },],
     startDateTime:{
-        type:Date,
+        type:Number,
+        // type:Date,
+        // default: Date.now ,
         // required:true
     },
     endDateTime:{
-        type:Date,
+        type:Number,
         // required:true
     },
     status:{
         type:String,
         enum: ["pending", "accepted", "rejected"],
         default:"pending"
+    },
+    timeStatus:{
+        type:String,
+        trim:true
     }
      
 },{timestamps:true});

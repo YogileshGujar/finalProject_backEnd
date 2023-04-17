@@ -8,9 +8,9 @@ export async function deleteMeeting(meetingId){
         let deletemeetingdata= await Meetings.deleteOne({_id: _id});
         if(deletemeetingdata.acknowledged){
             await Invitess.deleteMany({meetingId: _id});
-            return {status:"success",message:"Meeting is delete"}
+            return {status:"success",message:"Meeting is delete complete"}
         }else{
-            return {status:"error",message:"Meeting is NOT delete"}
+            return {status:"error",message:"Meeting is NOT delete complete"}
         }
 
         

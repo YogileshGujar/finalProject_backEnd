@@ -6,6 +6,7 @@ import { getAllinvitessController } from "./controller/invitessController.js";
 import { findLocationController } from "./controller/locationController.js";
 import { otpgeneratorController, otpverificationController } from "./controller/otpController.js";
 import { createUserController, getAllUserController, getUserByIdController } from "./controller/userController.js";
+import { deleteMeetingController } from "./controller/DeleteMeetingController.js";
 const router = express.Router();
 
 router.post('/api/createUser',createUserController);
@@ -29,6 +30,9 @@ router.post('/api/getUsers',getUserByIdController);
 
 //Invitess
 router.get('/api/getAllInvites',getAllinvitessController);
+
+//Delete Meeting
+router.post('/api/deleteMeeting',deleteMeetingController);
 
 
 export {router as routes};
